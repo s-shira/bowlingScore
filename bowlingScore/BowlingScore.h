@@ -14,6 +14,11 @@ typedef unsigned short score_t;		// スコア用の型
 class BowlingScore
 {
 public:
+	static const score_t LAST_FRAME_NUM = 10;	// 最後のフレーム番号 (10フレ)
+	static const frame_t MAX_FRAME_NUM = 10;	// 最大のフレーム番号
+	static const score_t MAX_FRAME_SCORE = 10;	// 一フレームのスコアの最大値
+
+public:
 	BowlingScore(void);
 	virtual ~BowlingScore(void);
 
@@ -51,10 +56,6 @@ protected:
 	score_t getNextThrowScore( const frame_t& frame, const unsigned int& cnt, bool* flag ) const;
 
 private:
-	static const score_t LAST_FRAME_NUM = 10;	// 最後のフレーム番号 (10フレ)
-	static const frame_t MAX_FRAME_NUM = 10;	// 最大のフレーム番号
-	static const score_t MAX_FRAME_SCORE = 10;	// 一フレームのスコアの最大値
-
 	frame_t		m_frame;			// 現在のスコア待ちのフレーム番号 [-] (1 - 10)
 	std::vector<FrameScoreT> m_frameScoreList;	// フレーム毎のスコア [-] (-)
 
