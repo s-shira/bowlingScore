@@ -55,18 +55,18 @@ bool BowlingScore::putFrameScore(	const score_t& first,
 	// スコアの更新
 	updateScore();
 
-	return 0;
+	return true;
 }
 
 //------------------------------------------------------------------------------
 // スコアの取得
 // 引数: frame    <I> - このフレームまでのスコアを取得 [-] (0 - 10)
 // 戻り値: score_t - スコア [-] (0 - 300)
-// 備考: frame = 0 または m_frameより大きい場合、m_frameまでのスコアを取得
+// 備考: frame = 0 または m_frame以上の場合、m_frame - 1までのスコアを取得
 //------------------------------------------------------------------------------
 score_t BowlingScore::score( const frame_t& frame ) const
 {
-	frame_t getFrame = ( ( 0 == frame ) || ( frame > m_frame ) ) ? m_frame : frame;
+	frame_t getFrame = ( ( 0 == frame ) || ( frame >= m_frame ) ) ? m_frame - 1 : frame;
 
 	// リミットチェック
 	getFrame = std::min<score_t>( MAX_FRAME_NUM, getFrame );
